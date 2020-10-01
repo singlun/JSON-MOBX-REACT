@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
+import { observer } from "mobx-react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const TodoView = observer(({ todo }) => (
+  <li>
+      <input
+          type="checkbox"
+          checked={todo.finished}
+          onClick={() => (todo.finished = !todo.finished)}
+      />
+      {todo.title}
+  </li>
+))
+
+@observer
+class App extends Component {
+
+        render() {
+
+        return (
+            <div>
+                <ul>
+                    {this.props.store.todos.map((todo) => (
+                        <TodoView todo={todo} key={todo.id} />
+                    ))}
+                </ul>
+                Tasks left: {this.props.store.unfinishedTodoCount}
+            </div>
+        )
+              }
+    
 }
 
-export default App;
+export default App
