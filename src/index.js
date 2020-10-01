@@ -2,21 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import TodoList from './TodoList'
 import Todo from './Todo'
+import TodoList from './TodoList'
 
-const store = new TodoList()
+let todoList = new TodoList();
 let todo = new Todo();
-todo.title = "Get Coffee";
-store.todos.push(todo)
-todo = new Todo();
-todo.title = "Go For a Walk";
-store.todos.push(todo)
+todo.todoItem = {
+  items: [{}, {id: Math.random(), title: "Go for a walk", finished: true},{id: Math.random(), title: "Goto Supermarket", finished: false},{id: Math.random(), title: "Goto Cinema", finished: true}]
+};
 
-store.todos[0].finished = true
+todoList.todo = todo;
 
 ReactDOM.render(
-    <App store={store}/>,
+    <App store={todoList}/>,
   document.getElementById('root')
 );
 

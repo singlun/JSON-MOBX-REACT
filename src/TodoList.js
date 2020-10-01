@@ -2,14 +2,14 @@
 import { decorate, observable, computed } from "mobx"
 
 class TodoList {
-    todos = []
+    todo = {} 
     get unfinishedTodoCount() {
-        return this.todos.filter((todo) => !todo.finished).length
+        return this.todo.todoItem.items.filter((todo) => !todo.finished).length
     }
 }
 
 decorate(TodoList, {
-    todos: observable,
+    todo: observable,
     unfinishedTodoCount: computed,
   });
 

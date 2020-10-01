@@ -20,7 +20,7 @@ class App extends Component {
         return (
             <div>
                 <ul>
-                    {this.props.store.todos.map((todo) => (
+                    {this.props.store.todo.todoItem.items.map((todo) => (
                         <TodoView todo={todo} key={todo.id} />
                     ))}
                 </ul>
